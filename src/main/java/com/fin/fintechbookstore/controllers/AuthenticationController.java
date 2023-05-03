@@ -43,7 +43,7 @@ public class AuthenticationController {
 
         final UserDetails userDetail = myUserDetailsService.loadUserByUsername(request.getUsername());
 
-        if (!myUserDetailsService.authenticate(request.getUsername(), request.getPassword())) {
+        if (!myUserDetailsService.authenticate(userDetail, request.getPassword())) {
             throw new CustomException("password not correct");
         }
 

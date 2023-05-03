@@ -36,8 +36,7 @@ public class MyUserDetailsService implements UserDetailsService {
         return new User(user.getUsername(), user.getPassword(), authorities);
     }
 
-    public boolean authenticate(String username, String password) {
-        UserDetails userDetails = loadUserByUsername(username);
-        return new BCryptPasswordEncoder().matches(password, userDetails.getPassword());
+    public boolean authenticate(UserDetails userDetail, String password) {
+        return new BCryptPasswordEncoder().matches(password, userDetail.getPassword());
     }
 }
